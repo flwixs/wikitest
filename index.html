@@ -3,831 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vextreme | Каталог подводного снаряжения</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #fff;
-            font-size: 14px;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        /* Кнопки */
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #1a73e8;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background-color: #0d62d9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(26, 115, 232, 0.2);
-        }
-
-        .btn-secondary {
-            background-color: #34a853;
-        }
-        .btn-secondary:hover {
-            background-color: #2e8b47;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid #dadce0;
-            color: #5f6368;
-        }
-        .btn-outline:hover {
-            background-color: #f8f9fa;
-            border-color: #1a73e8;
-            color: #1a73e8;
-        }
-
-        /* Секции */
-        section {
-            padding: 60px 0;
-        }
-
-        h1, h2, h3, h4 {
-            font-weight: 600;
-            color: #202124;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        h2 {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 2.5rem;
-            color: #1a73e8;
-        }
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-            color: #5f6368;
-            font-size: 1rem;
-        }
-
-        /* Шапка */
-        header {
-            background-color: #fff;
-            border-bottom: 1px solid #dadce0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 12px 0;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #1a73e8;
-            display: flex;
-            align-items: center;
-        }
-        .logo i {
-            margin-right: 8px;
-            font-size: 1.8rem;
-        }
-
-        /* Навигация */
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            font-size: 15px;
-            color: #5f6368;
-            padding: 8px 0;
-            position: relative;
-        }
-        .nav-links a:hover {
-            color: #1a73e8;
-        }
-
-        /* Хлебные крошки */
-        .breadcrumbs {
-            padding: 20px 0;
-            font-size: 0.9rem;
-            color: #5f6368;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #e8eaed;
-        }
-        .breadcrumbs a {
-            color: #1a73e8;
-        }
-        .breadcrumbs a:hover {
-            text-decoration: underline;
-        }
-        .breadcrumbs span {
-            color: #5f6368;
-        }
-
-        /* Сетка категорий */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .category-card {
-            background: #fff;
-            border: 1px solid #dadce0;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            text-align: center;
-            padding-bottom: 20px;
-            cursor: pointer;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            border-color: #1a73e8;
-        }
-
-        .category-icon {
-            height: 160px;
-            background: linear-gradient(135deg, #e8f0fe 0%, #f8f9fa 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #1a73e8;
-            font-size: 4rem;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #e8eaed;
-        }
-
-        .subcategories {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin: 15px 15px 0;
-            text-align: left;
-        }
-
-        .subcategory-item {
-            padding: 8px 10px;
-            background-color: #f8f9fa;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: #5f6368;
-            transition: all 0.2s;
-            cursor: pointer;
-            text-align: center;
-        }
-        .subcategory-item:hover {
-            background-color: #e8f0fe;
-            color: #1a73e8;
-        }
-
-        /* Сетка товаров */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-        .product-card {
-            background: #fff;
-            border: 1px solid #dadce0;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        .product-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        .product-img {
-            height: 180px;
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #1a73e8;
-            font-size: 3.5rem;
-            border-bottom: 1px solid #eee;
-        }
-        .product-info {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .product-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #202124;
-            margin: 10px 0 15px;
-        }
-        .old-price {
-            text-decoration: line-through;
-            color: #9aa0a6;
-            font-size: 1rem;
-            margin-right: 8px;
-            font-weight: normal;
-        }
-        .product-btn {
-            margin-top: auto;
-            width: 100%;
-        }
-
-        /* Фильтры подкатегорий */
-        .subcategory-filters {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin: 20px 0 30px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-        .filter-btn {
-            padding: 8px 16px;
-            background: white;
-            border: 1px solid #dadce0;
-            border-radius: 20px;
-            color: #5f6368;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background: #1a73e8;
-            color: white;
-            border-color: #1a73e8;
-        }
-
-        /* Иконки соцсетей */
-        .social-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-left: 20px;
-        }
-        .social-header a {
-            font-size: 1.3rem;
-            color: #5f6368;
-            transition: color 0.2s;
-        }
-        .social-header a:hover {
-            color: #1a73e8;
-        }
-        .social-header .fa-telegram:hover { color: #0088cc; }
-        .social-header .fa-whatsapp:hover { color: #25D366; }
-        .social-header .fa-instagram:hover { color: #E4405F; }
-
-        /* Корзина */
-        .cart-icon {
-            position: relative;
-            font-size: 1.4rem;
-            cursor: pointer;
-            color: #5f6368;
-            margin-left: 20px;
-        }
-        .cart-icon:hover {
-            color: #1a73e8;
-        }
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: #ea4335;
-            color: white;
-            font-size: 0.7rem;
-            font-weight: bold;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Мобильное меню */
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #5f6368;
-        }
-
-        /* Скрытые элементы */
-        .hidden {
-            display: none !important;
-        }
-
-        /* Футер и соцсети */
-        .social-footer {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin: 25px 0;
-        }
-        .social-footer a {
-            font-size: 1.8rem;
-            color: #5f6368;
-            transition: color 0.2s;
-        }
-        .social-footer a:hover {
-            color: #1a73e8;
-        }
-        .social-footer .fa-telegram:hover { color: #0088cc; }
-        .social-footer .fa-whatsapp:hover { color: #25D366; }
-        .social-footer .fa-instagram:hover { color: #E4405F; }
-
-        footer {
-            background-color: #1a1a1a;
-            color: #9aa0a6;
-            text-align: center;
-            padding: 25px 0;
-            font-size: 0.9rem;
-        }
-
-        /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease;
-        }
-
-        /* Адаптивность */
-        @media (max-width: 992px) {
-            h1 { font-size: 2.2rem; }
-            h2 { font-size: 1.8rem; }
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .hero { padding-top: 100px; }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            .nav-links, .social-header {
-                display: none;
-            }
-            .nav-links.active {
-                display: flex;
-                position: fixed;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                flex-direction: column;
-                align-items: center;
-                padding: 20px 0;
-                gap: 20px;
-                border-top: 1px solid #dadce0;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.05);
-                z-index: 999;
-            }
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
-            .subcategories {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 10px;
-            }
-            h1 { font-size: 1.8rem; }
-            h2 { font-size: 1.5rem; }
-            section {
-                padding: 40px 0;
-            }
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-            .subcategories {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Хьюстон — Википедия</title>
 </head>
 <body>
-    <!-- Шапка -->
     <header>
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <i class="fas fa-water"></i>
-                VEXTREME
-            </a>
-
-            <div class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </div>
-
-            <nav>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#" onclick="showMainCatalog(); return false;">Каталог</a></li>
-                    <li><a href="#delivery">Доставка</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
-                    <li><a href="#" class="call-btn">Заказать звонок</a></li>
-                </ul>
-            </nav>
-
-            <div class="social-header" id="desktopSocial">
-                <a href="https://t.me/vextreme" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-                <a href="https://wa.me/79999999999" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://instagram.com/vextreme" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
-
-            <div class="cart-icon" id="cartIcon">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count" id="cartCount">0</span>
-            </div>
-        </div>
+        <h1>Хьюстон</h1>
     </header>
-
-    <!-- Хлебные крошки -->
-    <div class="breadcrumbs container" id="breadcrumbs">
-        <a href="#" onclick="showMainCatalog(); return false;">Главная</a> / <span>Каталог</span>
-    </div>
-
-    <!-- Основной каталог (видим по умолчанию) -->
-    <section id="mainCatalog" class="fade-in">
-        <div class="container">
-            <h2>Категории снаряжения</h2>
-            <p style="text-align: center; margin-bottom: 40px; color: #5f6368;">Выберите категорию для просмотра товаров</p>
+    
+    <main>
+        <section>
+            <p><strong>Хьюстон</strong> (англ. Houston) — четвёртый по количеству жителей город в Соединённых Штатах Америки и крупнейший город в штате Техас с населением 2 319 603 человека на 2017 год. Хьюстон является административным центром округа Харрис, а также главным экономическим центром агломерации Большого Хьюстона с общим населением 6 772 470 человек на 2016 год. Город располагается в 50 километрах от Мексиканского залива на прибрежной равнине.</p>
             
-            <div class="categories-grid">
-                <!-- Категория 1: Гидрокостюмы -->
-                <div class="category-card" onclick="openCategory('wetsuits')">
-                    <div class="category-icon">
-                        <i class="fas fa-swimming-pool"></i>
-                    </div>
-                    <h3>Гидрокостюмы</h3>
-                    <p>Костюмы для разных температур воды</p>
-                    <div class="subcategories">
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('wetsuits', '5mm')">5 мм</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('wetsuits', '7mm')">7 мм</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('wetsuits', 'drysuits')">Сухие костюмы</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('wetsuits', 'shorties')">Шортики</div>
-                    </div>
-                    <button class="btn" style="margin-top: 15px;">Смотреть все (24 товара)</button>
-                </div>
-                
-                <!-- Категория 2: Маски и трубки -->
-                <div class="category-card" onclick="openCategory('masks')">
-                    <div class="category-icon">
-                        <i class="fas fa-mask"></i>
-                    </div>
-                    <h3>Маски и трубки</h3>
-                    <p>Для комфортного подводного плавания</p>
-                    <div class="subcategories">
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('masks', 'fullface')">Панорамные</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('masks', 'frameless')">Беспереплётные</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('masks', 'tubes')">Трубки</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('masks', 'sets')">Наборы</div>
-                    </div>
-                    <button class="btn" style="margin-top: 15px;">Смотреть все (18 товаров)</button>
-                </div>
-                
-                <!-- Категория 3: Ласты -->
-                <div class="category-card" onclick="openCategory('fins')">
-                    <div class="category-icon">
-                        <i class="fas fa-swimmer"></i>
-                    </div>
-                    <h3>Ласты</h3>
-                    <p>Для эффективного движения под водой</p>
-                    <div class="subcategories">
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('fins', 'openheel')">С открытой пяткой</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('fins', 'fullfoot')">С закрытой пяткой</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('fins', 'monofins')">Моноласты</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('fins', 'split')">Разрезные</div>
-                    </div>
-                    <button class="btn" style="margin-top: 15px;">Смотреть все (16 товаров)</button>
-                </div>
-                
-                <!-- Категория 4: Регуляторы -->
-                <div class="category-card" onclick="openCategory('regulators')">
-                    <div class="category-icon">
-                        <i class="fas fa-wind"></i>
-                    </div>
-                    <h3>Регуляторы и октопусы</h3>
-                    <p>Системы подачи воздуха</p>
-                    <div class="subcategories">
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('regulators', 'balanced')">Сбалансированные</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('regulators', 'unbalanced')">Несбалансированные</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('regulators', 'octopus')">Октопусы</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('regulators', 'instruments')">Приборы</div>
-                    </div>
-                    <button class="btn" style="margin-top: 15px;">Смотреть все (22 товара)</button>
-                </div>
-                
-                <!-- Категория 5: Компенсаторы -->
-                <div class="category-card" onclick="openCategory('bc')">
-                    <div class="category-icon">
-                        <i class="fas fa-vest"></i>
-                    </div>
-                    <h3>Компенсаторы плавучести</h3>
-                    <p>BCD и системы плавучести</p>
-                    <div class="subcategories">
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('bc', 'jacket')">Жилеты</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('bc', 'wing')">Крылья</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('bc', 'travel')">Туристические</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('bc', 'tech')">Технические</div>
-                    </div>
-                    <button class="btn" style="margin-top: 15px;">Смотреть все (14 товаров)</button>
-                </div>
-                
-                <!-- Категория 6: Подводная охота -->
-                <div class="category-card" onclick="openCategory('hunting')">
-                    <div class="category-icon">
-                        <i class="fas fa-fish"></i>
-                    </div>
-                    <h3>Подводная охота</h3>
-                    <p>Специализированное снаряжение</p>
-                    <div class="subcategories">
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('hunting', 'guns')">Ружья</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('hunting', 'spearguns')">Гарпуны</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('hunting', 'knives')">Ножи</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('hunting', 'floats')">Поплавки</div>
-                    </div>
-                    <button class="btn" style="margin-top: 15px;">Смотреть все (32 товара)</button>
-                </div>
-                
-                <!-- Категория 7: Аксессуары -->
-                <div class="category-card" onclick="openCategory('accessories')">
-                    <div class="category-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Аксессуары</h3>
-                    <p>Дополнительное оборудование</p>
-                    <div class="subcategories">
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('accessories', 'lights')">Фонари</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('accessories', 'compasses')">Компасы</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('accessories', 'bags')">Сумки</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('accessories', 'tools')">Инструменты</div>
-                    </div>
-                    <button class="btn" style="margin-top: 15px;">Смотреть все (45 товаров)</button>
-                </div>
-                
-                <!-- Категория 8: Компьютеры -->
-                <div class="category-card" onclick="openCategory('computers')">
-                    <div class="category-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <h3>Дайв-компьютеры</h3>
-                    <p>Электроника для дайвинга</p>
-                    <div class="subcategories">
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('computers', 'wrist')">Наручные</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('computers', 'console')">Консольные</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('computers', 'air')">С передатчиком</div>
-                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('computers', 'nitrox')">Для найтрокса</div>
-                    </div>
-                    <button class="btn" style="margin-top: 15px;">Смотреть все (12 товаров)</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Страница категории (скрыта по умолчанию) -->
-    <section id="categoryPage" class="hidden">
-        <div class="container fade-in">
-            <h2 id="categoryTitle">Категория</h2>
+            <p>Хьюстон был основан 30 августа 1836 года и включён в состав республики Техас 5 июня 1837 года, получив своё имя в честь Сэмюэла Хьюстона — главнокомандующего армией Техаса во время Техасской революции и президента Республики Техас. Быстрое развитие порта и железных дорог в XIX веке, а также начало добычи нефти и последовавшее развитие нефтяной промышленности в XX веке привели к быстрому росту населения. В 1960-е годы количество жителей превысило один миллион человек, а в 2000-е — два миллиона.</p>
             
-            <div class="subcategory-filters" id="subcategoryFilters">
-                <button class="filter-btn active" data-filter="all" onclick="filterProducts('all')">Все товары</button>
-                <!-- Фильтры будут добавлены динамически -->
-            </div>
+            <p>Город является ведущим мировым центром энергетической промышленности, а экономика города также представлена предприятиями в области аэронавтики, транспорта и здравоохранения. Важнейшими объектами для экономики и инфраструктуры города являются космический центр имени Линдона Джонсона, крупнейший американский по международным грузоперевозкам порт, хьюстонский судоходный канал, крупнейший в мире Техасский медицинский центр.</p>
+        </section>
+        
+        <nav>
+            <h2 id="content">Содержание</h2>
+            <ol>
+                <li><a href="#history">История</a>
+                    <ol>
+                        <li><a href="#etymology">Этимология, прозвища</a></li>
+                        <li><a href="#foundation">Основание</a></li>
+                        <li><a href="#20th-century">XX век</a></li>
+                    </ol>
+                </li>
+                <li><a href="#geography">Физико-географическая характеристика</a>
+                    <ol>
+                        <li><a href="#location-climate">Географическое положение и климат</a></li>
+                        <li><a href="#relief-waters">Рельеф, внутренние воды</a></li>
+                        <li><a href="#flora-fauna">Флора и фауна</a></li>
+                    </ol>
+                </li>
+                <li><a href="#economy">Экономика</a>
+                    <ol>
+                        <li><a href="#general-economy">Общее состояние</a></li>
+                        <li><a href="#energy">Энергетика и нефтехимия</a></li>
+                        <li><a href="#aerospace">Авиакосмическая промышленность</a></li>
+                    </ol>
+                </li>
+                <li><a href="#population">Население</a>
+                    <ol>
+                        <li><a href="#population-dynamics">Динамика и структура населения</a></li>
+                        <li><a href="#ethnicity">Этнический и конфессиональный состав, языки</a></li>
+                    </ol>
+                </li>
+                <li><a href="#media">Средства массовой информации</a></li>
+                <li><a href="#sister-cities">Города-побратимы</a></li>
+            </ol>
+        </nav>
+        
+        <article>
+            <h2 id="history">История</h2>
             
-            <div id="categoryProducts" class="products-grid">
-                <!-- Товары будут загружены динамически -->
-            </div>
+            <section>
+                <h3 id="etymology">Этимология, прозвища</h3>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Sam_Houston_portrait.jpg/200px-Sam_Houston_portrait.jpg" alt="Сэмюэл Хьюстон">
+                    <figcaption>Сэмюэл Хьюстон</figcaption>
+                </figure>
+                
+                <p>Город назван в честь Сэмюэла Хьюстона — главнокомандующего армией Техаса во время Техасской революции (1835—1836) и президента Республики Техас (1836—1838, 1841—1844).</p>
+                
+                <p>Официальное прозвище Хьюстона — «Space city», которое можно перевести, как «космический город», «город космонавтики» или «космоград». Название дано из-за того, что здесь находится космический центр имени Линдона Джонсона. Всего город имеет 12 прозвищ.</p>
+                
+                <p>В американской разговорной речи есть популярная фраза: «Хьюстон, у нас проблема» (англ. Houston, we’ve had a problem), появившаяся после неудачной миссии Аполлон-13. В Хьюстоне проходили съёмки фильма «Аполлон-13», в основу сюжета которого легли реальные события миссии.</p>
+            </section>
             
-            <div style="text-align: center; margin-top: 40px;">
-                <button class="btn btn-outline" onclick="showMainCatalog()">
-                    <i class="fas fa-arrow-left"></i> Вернуться в каталог
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Футер -->
+            <section>
+                <h3 id="foundation">Основание</h3>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Allen%27s_Landing_Houston_2019.jpg/300px-Allen%27s_Landing_Houston_2019.jpg" alt="Allen’s Landing — место, где был основан город">
+                    <figcaption>Allen’s Landing — место, где был основан город</figcaption>
+                </figure>
+                
+                <p>После окончания войны за независимость Техаса, в августе 1836 года предприниматели братья Август и Джон Аллены купили 26,9 км² земли вдоль реки Буффало-Байю, планируя основать на ней населённый пункт. Они хотели, чтобы будущий город стал столицей Техаса и крупным торговым центром.</p>
+                
+                <p>Датой основания города принято считать 30 августа 1836 года, когда братья Аллены разместили объявление о появлении города. Город назвали в честь генерала Сэма Хьюстона, возглавлявшего армию техасцев в битве при Сан-Хасинто во время войны против Мексики, позже избранного президентом Техаса. На январь 1837 года в посёлке проживало всего 12 человек, однако через четыре месяца население возросло до 1 500 человек. 5 июня 1837 года город был включён в округ Гаррисберг (ныне Харрис) и стал временной столицей Республики Техас, которой оставался до 1839 года. Первым мэром Хьюстона стал Джеймс Холман.</p>
+            </section>
+            
+            <section>
+                <h3 id="20th-century">XX век</h3>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Houston_Main_Street_1908.jpg/300px-Houston_Main_Street_1908.jpg" alt="Мэйн-Стрит в центре, 1908 год">
+                    <figcaption>Мэйн-Стрит в центре, 1908 год</figcaption>
+                </figure>
+                
+                <p>В 1900 году на Хьюстон обрушился Галвестонский ураган, продолжавшийся с 27 августа по 12 сентября. В пересчете на сегодняшний курс ущерб составил бы $526 млн, погибло 8 тысяч человек. В следующем году было найдено большое месторождение нефти вблизи города Бомонт, что послужило началом развития нефтяной промышленности в Техасе. В 1902 году президент США Теодор Рузвельт утвердил проект стоимостью в $1 млн на реконструкцию хьюстонского судоходного канала. К 1910 году численность населения города достигла 78 800 человек, почти в два раза превысив количество жителей проживавших в Хьюстоне в 1900 году. В 1914 году президент США Вудро Вильсон принял участие в открытии нового глубоководного порта Хьюстона, а через год был открыт хьюстонский судоходный канал.</p>
+                
+                <p>В 1945 году было начато формирование Техасского медицинского центра. В конце 1940-х несколько пригородов были включены в городскую черту, в результате чего площадь Хьюстона увеличилась более чем в два раза. В 1950-е годы управления многих крупных (в основном нефтяных) компаний США переместились в Хьюстон, что благоприятно отразилось на экономике города, одним из поводов для переезда послужило массовое оснащение всех офисов кондиционерами.</p>
+                
+                <p>Именно кондиционирование воздуха! Именно оно было основой для стремительного роста Хьюстона в 1950 году, когда он стал наиболее оснащённым кондиционерами городом в мире. Именно это стимулировало многие корпорации переместить свои штаб-квартиры в Хьюстон.</p>
+                
+                <p>В 1962—1964 годах в двадцати пяти милях к югу от центра Хьюстона, на землях, переданных федеральному правительству университетом Райса, был построен Центр управления космическими кораблями, с 1973 года носящий имя Линдона Джонсона. В 1960-х годах население Хьюстона достигло миллиона человек.</p>
+            </section>
+        </article>
+        
+        <article>
+            <h2 id="geography">Физико-географическая характеристика</h2>
+            
+            <section>
+                <h3 id="location-climate">Географическое положение и климат</h3>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Landsat_Houston.jpg/300px-Landsat_Houston.jpg" alt="Хьюстон со спутника Landsat 7">
+                    <figcaption>Хьюстон со спутника Landsat 7</figcaption>
+                </figure>
+                
+                <p>Хьюстон расположен в 50 километрах от Мексиканского залива на прибрежной равнине. Значительная часть города была построена на лесных угодьях, болотах и прериях, они до сих пор сохранились в близлежащих районах около Хьюстона. Город расположен на территории, для которой обычны частые ливни и дожди, поэтому для Хьюстона наводнения — постоянная проблема. Высота города над уровнем моря в среднем 15 метров, самая высшая точка — северо-запад Хьюстона (38 метров). Площадь города составляет 1 552,9 км².</p>
+                
+                <p>Весной и летом в городе жарко и влажно: средняя температура весной 21 °С, а летом — 28,8 °С. Из-за высокой температуры почти во всех транспортных средствах и зданиях установлены кондиционеры. Абсолютный максимум температуры был зарегистрирован в 2000 и 2011 годах, когда она составила 42,8 °С. На Хьюстон часто обрушиваются ураганы, самые крупные из которых за последние десятилетия — «Эллисон» и «Айк». Осень — достаточно тёплое время года, особенно сентябрь. Температура в этом месяце выше, чем в мае. Средняя температура осенью составляет 21,8 °С, а среднее количество осадков — самое высокое в году (359,7 мм). Зима тёплая. Самая низкая температура была зарегистрирована в 1930 году — -15 °С. Средняя температура зимой составляет 12,6 °С, а максимальная была зарегистрирована в 1986 году — 32,8 °С. 18 дней в году температура опускается ниже 0 °С. Обычно зимой осадки выпадают в виде дождя, но редко могут быть и в виде снега. Начиная с 1895 года, снег падал 35 раз, причём 21 раз устанавливался временный снежный покров.</p>
+                
+                <h4>Дни с ясной и дождливой погодой в месяц (суммарно по часам)</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Месяц</th>
+                            <th>Янв</th>
+                            <th>Фев</th>
+                            <th>Мар</th>
+                            <th>Апр</th>
+                            <th>Май</th>
+                            <th>Июн</th>
+                            <th>Июл</th>
+                            <th>Авг</th>
+                            <th>Сен</th>
+                            <th>Окт</th>
+                            <th>Ноя</th>
+                            <th>Дек</th>
+                            <th>Год</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Солнечное сияние, день</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>9</td>
+                            <td>8</td>
+                            <td>8</td>
+                            <td>8</td>
+                            <td>10</td>
+                            <td>9</td>
+                            <td>7</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                            <td>106</td>
+                        </tr>
+                        <tr>
+                            <td>Дождь, день</td>
+                            <td>14</td>
+                            <td>12</td>
+                            <td>12</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>14</td>
+                            <td>13</td>
+                            <td>12</td>
+                            <td>10</td>
+                            <td>9</td>
+                            <td>10</td>
+                            <td>12</td>
+                            <td>136</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section>
+                <h3 id="relief-waters">Рельеф, внутренние воды</h3>
+                <p>Для почв Хьюстона характерно наличие осадочных горных пород и песка. На поверхности часты эрозии, на территории города находится около 300 разломов, их общая длина примерно 500 км. Один из них — Long Point–Eureka Heights fault system. Также есть уникальные отложения из смеси песков и глин, благодаря ним, через определённое время, из разлагающихся органических веществ образуются нефть и природный газ. На окраинах Хьюстона встречается чёрная плодородная почва, на которой растят рис, сою, зерновые культуры, овощи и разводят крупный рогатый скот, лошадей, свиней и домашнюю птицу. В городе и его окрестностях имеется очень малая вероятность сильного землетрясения, а самое сильное землетрясение магнитудой 3,8 было в 1910 году.</p>
+                
+                <p>В Хьюстоне протекают четыре реки. Основная, Буффало-Байю, проходит через центр города и хьюстонский судоходный канал, и имеет три притока. Брес-Байю протекает вдоль района Техасского медицинского центра, Симс-Байю проходит через южную часть города, Уайт-Ок-Байю — через северную часть города. Судоходный канал следует дальше до Галвестона, вплоть до Мексиканского залива. В пригороде находятся два озера: Конро и Хьюстон, которые являются водохранилищем и служат городскими источниками воды. На территории города протекает множество подземных вод, которые раньше активно использовали для водоснабжения, но перестали из-за медленного движения земной поверхности.</p>
+            </section>
+            
+            <section>
+                <h3 id="flora-fauna">Флора и фауна</h3>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Discovery_Green_Houston_Texas.jpg/300px-Discovery_Green_Houston_Texas.jpg" alt="Парк Discovery green в центре Хьюстона">
+                    <figcaption>Парк Discovery green в центре Хьюстона</figcaption>
+                </figure>
+                
+                <p>В флоре и фауне округа Харрис преобладают виды животных и растений, обитающих в болотных местностях, так как значительная часть города построена на болотах и прериях.</p>
+                
+                <p>Среди земноводных и пресмыкающихся наиболее известны хьюстонская жаба и техасская рогатая ящерица. Среди млекопитающих можно отметить рыжего волка, оцелота и канадскую выдру. Среди птиц замечаются американский клювач и белоголовый орлан. Численность большинства животных за последний век значительно сократилась в черте округа и находится под угрозой исчезновения из-за их истребления и ухудшения экологической обстановки. В городе также водятся комары, представляющие опасность человеку.</p>
+                
+                <p>В городе и его пригородах растут сосны, пальмы и другие деревья, растущие в субтропическом климате. Среди растений, произрастающих в городе, можно выделить орхидеи и магнолии.</p>
+            </section>
+        </article>
+        
+        <article>
+            <h2 id="economy">Экономика</h2>
+            
+            <section>
+                <h3 id="general-economy">Общее состояние</h3>
+                <h4>Крупнейшие компании, базирующиеся в Хьюстоне по версии Fortune 500 на 2016 год.</h4>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Техас</th>
+                            <th>Компания</th>
+                            <th>США</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>3</td><td>Phillips 66</td><td>30</td></tr>
+                        <tr><td>5</td><td>Sysco</td><td>57</td></tr>
+                        <tr><td>8</td><td>ConocoPhillips</td><td>90</td></tr>
+                        <tr><td>10</td><td>Enterprise Products Partners</td><td>104</td></tr>
+                        <tr><td>12</td><td>Halliburton</td><td>117</td></tr>
+                        <tr><td>13</td><td>Plains All American Pipeline</td><td>121</td></tr>
+                        <tr><td>18</td><td>Baker Hughes</td><td>178</td></tr>
+                        <tr><td>20</td><td>National Oilwell Varco</td><td>192</td></tr>
+                        <tr><td>21</td><td>Kinder Morgan</td><td>198</td></tr>
+                        <tr><td>24</td><td>Waste Management</td><td>221</td></tr>
+                        <tr><td>25</td><td>Occidental Petroleum</td><td>225</td></tr>
+                        <tr><td>29</td><td>Group 1 Automotive</td><td>267</td></tr>
+                        <tr><td>34</td><td>Cameron International</td><td>319</td></tr>
+                        <tr><td>35</td><td>EOG Resources</td><td>322</td></tr>
+                        <tr><td>38</td><td>Quanta Services</td><td>352</td></tr>
+                        <tr><td>39</td><td>CenterPoint Energy</td><td>363</td></tr>
+                        <tr><td>40</td><td>Targa Resources</td><td>387</td></tr>
+                        <tr><td>41</td><td>Apache</td><td>388</td></tr>
+                        <tr><td>42</td><td>Calpine</td><td>402</td></tr>
+                        <tr><td>45</td><td>FMC Technologies</td><td>410</td></tr>
+                        <tr><td>49</td><td>Marathon Oil</td><td>438</td></tr>
+                        <tr><td>52</td><td>Spectra Energy</td><td>493</td></tr>
+                    </tbody>
+                </table>
+                
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Houston_Ship_Channel.jpg/300px-Houston_Ship_Channel.jpg" alt="Хьюстонский судоходный канал">
+                    <figcaption>Хьюстонский судоходный канал</figcaption>
+                </figure>
+                
+                <p>Хьюстон является одним из ведущих городов мира в сферах добычи и переработки нефти и природного газа, из-за чего часто именуется «энергетической столицей мира», а также биомедицинских исследований и аэронавтики. Также Хьюстон имеет репутацию «зелёного города», так как половика электроэнергии производится с помощью солнечных и ветряных установок. Большую роль в транспортной сфере города играет порт. В Хьюстоне базируется 22 компании из списка Fortune 500.</p>
+                
+                <p>Международная исследовательская компания Mercer в 2017 году отвела Хьюстону 67 место в рейтинге самых удобных для проживания городов мира — между британским Белфастом и американским Майами, и 75 место среди городов мира по стоимости жизни — наравне с Бангкоком, Дохой и Мюнхеном. Город сильно снизил позиции из-за экономической ситуации и на 2016 год занимает лишь 63 место в США в категории «лучшие места для бизнеса и карьеры» по версии журнала Forbes. Исследовательская компания A.T. Kearney поставила Хьюстон на 38 место в списке глобальных городов мира. В исследованиях университета Лафборо о глобальных городах Хьюстону поставлена категория «Бета+», как и Дюссельдорфу, Монреалю, Тель-Авиву.</p>
+                
+                <p>Минимальная заработная плата в Хьюстоне в час составляет $7,25 или $1 257 в месяц. Безработица на начало 2017 года составила 5,8 %. За чертой бедности находятся 9,2 % жителей. Средние доходы семьи на 2016 год по данным Forbes составляют $60 840, а средняя цена дома составляет $219 000.</p>
+            </section>
+            
+            <section>
+                <h3 id="energy">Энергетика и нефтехимия</h3>
+                <p>В Хьюстоне находится более 5 тысяч энергетических компаний, связанных с ведением бизнеса в этом регионе. В городе находятся штаб-квартиры множества энергетических и нефтяных компаний, входящих в список Fortune 500. Хьюстон является членом Всемирного партнёрства энергетических городов.</p>
+                
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Chevron_Houston_01.jpg/300px-Chevron_Houston_01.jpg" alt="Офис компании Chevron в Хьюстоне">
+                    <figcaption>Офис компании Chevron в Хьюстоне</figcaption>
+                </figure>
+                
+                <p>Одной из самых крупных компаний, обеспечивающих электроэнергией город, является компания CenterPoint Energy, которая поставляет электричество не только для Техаса, но и для Арканзаса, Луизианы, Миннесоты, Миссисипи, Оклахомы. Услугами компании пользуются более 5 млн человек. Другая крупная энергетическая компания Calpine занимает 42 место в Техасе и 402 в США в рейтинге Fortune 500. Корпорация обладает парком из 84 электростанций разных типов, разбросанных по всей территории США. Одна из них, Channel Energy Center, расположена в самом Хьюстоне, на берегу судоходного канала, ещё одна, Baytown Energy Center — в пригороде Бейтаун. Максимальная мощность хьюстонской электростанции — 808 мегаватт (базовая — 723 МВт), бейтаунская электростанция в пиковом режиме способна производить 842 мегаватт (базовая электрическая мощность — 782 МВт). На территории метрополии Большого Хьюстона действует восемь электростанций Calpine.</p>
+                
+                <p>Хьюстон является одним из крупнейших производственных центров мира для нефтехимической промышленности. В городе располагаются больше 3 700 организаций, работающих в сфере нефтехимии. Также в хьюстонском регионе находятся 9 нефтеперерабатывающих заводов, перерабатывающих 2,3 миллиона баррелей в день, что составляет 13,2 % от всей переработки в США. Также в Хьюстоне имеется 719 предприятий по созданию химических и пластмассовых изделий. В городе находится 17,5 % рабочих мест, занятых в сфере нефтехимии, из всех мест в США (112,6 тысячи из 643,3 тысяч). Город занимает лидирующее место по производству товаров из полиэтилена (38,7 % от всего производства в США), поливинилхлорида (35,9 %) и полипропилена (48,4 %).</p>
+            </section>
+            
+            <section>
+                <h3 id="aerospace">Авиакосмическая промышленность</h3>
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Johnson_Space_Center_1990.jpg/300px-Johnson_Space_Center_1990.jpg" alt="Космический центр им. Джонсона">
+                    <figcaption>Космический центр им. Джонсона</figcaption>
+                </figure>
+                
+                <p>В Хьюстоне располагается космический центр имени Линдона Джонсона, представляющий собой научно-исследовательское и проектно-конструкторское предприятие, в котором работают 15000 человек (3000 инженеров и учёных, 12000 остальных рабочих). Всего в городе располагаются больше 150 организаций, имеющих дело с космической отраслью.</p>
+                
+                <p>В районе Хьюстона находятся производственные мощности компании Lockheed Martin, а также офис программы строительства космического корабля «Орион» для NASA. В городе расположены производственные мощности компании Boeing, а также штаб-квартира подразделения «Boeing Space Exploration», занимающаяся исследованием космических систем. Мощности компании Beechcraft, находящиеся в аэропорте им. Хобби, занимаются техническим обслуживанием и ремонтом воздушных судов. Компания Barrios Technology выполняет контракты для NASA, связанные с кораблём «Орион», а также разрабатывает программное обеспечение для воздушных судов Boeing. Другими крупными исполнителями заказов NASA в Хьюстоне являются: Computer Sciences Corporation — техническое обслуживание и модификация самолётов, Jacobs Engineering Group — машиноведение, L-3 Communications — роботехника, MEI Technologies — электрические инженерные системы, Oceaneering International — скафандры и прилагающееся аппаратное обеспечение, Raytheon — лаборатория нейтральной плавучести и макеты космических короблей, SAIC — безопасность и поддержка миссий, United Space Alliance — координационный центр информации, United Technologies — внекорабельная деятельность, Wyle Laboratories — космическая биология.</p>
+            </section>
+        </article>
+        
+        <article>
+            <h2 id="population">Население</h2>
+            
+            <section>
+                <h3 id="population-dynamics">Динамика и структура населения</h3>
+                <table>
+                    <caption>Перепись населения</caption>
+                    <thead>
+                        <tr>
+                            <th>Год переписи</th>
+                            <th>Нас.</th>
+                            <th>%±</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1850</td><td>2396</td><td>—</td></tr>
+                        <tr><td>1860</td><td>4845</td><td>102.2%</td></tr>
+                        <tr><td>1870</td><td>9332</td><td>92.6%</td></tr>
+                        <tr><td>1880</td><td>16 513</td><td>77%</td></tr>
+                        <tr><td>1890</td><td>27 557</td><td>66.9%</td></tr>
+                        <tr><td>1900</td><td>44 633</td><td>62%</td></tr>
+                        <tr><td>1910</td><td>78 800</td><td>76.6%</td></tr>
+                        <tr><td>1920</td><td>138 276</td><td>75.5%</td></tr>
+                        <tr><td>1930</td><td>292 352</td><td>111.4%</td></tr>
+                        <tr><td>1940</td><td>384 514</td><td>31.5%</td></tr>
+                        <tr><td>1950</td><td>596 163</td><td>55%</td></tr>
+                        <tr><td>1960</td><td>938 219</td><td>57.4%</td></tr>
+                        <tr><td>1970</td><td>1 232 802</td><td>31.4%</td></tr>
+                        <tr><td>1980</td><td>1 595 138</td><td>29.4%</td></tr>
+                        <tr><td>1990</td><td>1 630 553</td><td>2.2%</td></tr>
+                        <tr><td>2000</td><td>1 953 631</td><td>19.8%</td></tr>
+                        <tr><td>2010</td><td>2 100 263</td><td>7.5%</td></tr>
+                        <tr><td>Текущий 2017</td><td>2 319 603</td><td>10.4%</td></tr>
+                    </tbody>
+                </table>
+                
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Houston_population_history.png/300px-Houston_population_history.png" alt="1850-2017 Переписи населения в 1790—2010 годах">
+                    <figcaption>1850-2017 Переписи населения в 1790—2010 годах</figcaption>
+                </figure>
+                
+                <figure>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Houston_Ethnicity_Map.png/300px-Houston_Ethnicity_Map.png" alt="Этническая карта Хьюстона">
+                    <figcaption>Этническая карта Хьюстона</figcaption>
+                </figure>
+                
+                <p>Согласно данным переписи населения США в 2010 году в городе проживало 2 100 263 человек, это на 7,5 % больше, чем в 2000 году. По оценке бюро переписи населения США на 1 января 2017 года население составило 2 319 603 человека. Население города, начиная с его основания, постоянно растёт: в 1960-х годах оно достигло 1 млн жителей, а в 2000-х годах превысило 2 млн. Плотность населения в среднем составляет 1494 чел./км².</p>
+                
+                <p>Возрастной состав населения: до 19 лет — 28,67 %; от 20 до 44 лет — 39,83 %; от 45 до 64 лет — 22,45 %; от 65 лет — 9,05 %. Средний возраст составляет 32 года. Количество женщин от всего населения — 49,82 %, мужчин — 50,18 %.</p>
+            </section>
+            
+            <section>
+                <h3 id="ethnicity">Этнический и конфессиональный состав, языки</h3>
+                <p>Из-за близости к Мексике доля выходцев из Латинской Америки составляет 43,8 % от всего населения. В абсолютных цифрах численность латиноамериканцев выросла с 731 до 920 тысяч человек за период 2000—2010 годов. Второе место в расовом составе города занимают белые люди, которые составляют 25,6 % от городского населения — их численность за десятилетие снизилась на 10 % с 602 до 538 тысяч человек. Также значительное население занимают афроамериканцы (23,1 %) и азиаты (6,15 %), чуть более 1 % составляют лица других национальностей. Иммиграция в Хьюстон в 2015 году составила 19 630 человек. 28 % жителей Хьюстона родились в другой стране: 72,5 % — из Латинской Америки, 18,9 % — из Азии, 3,9 % и 3,8 % — из Африки и Европы соответственно, 0,2 % — из Океании. До 1960-х годов основными иммигрантами были люди из Европы, но с принятием в 1965 году нового закона об иммиграции и гражданстве, отменившего квоты по национальности, большинство иммигрантов стало приезжать из Латинской Америки, Азии и Африки. В 2005 году 240 тысяч жителей Нового Орлеана, на который обрушился ураган «Катрина», эвакуировались в Хьюстон. Впоследствии, до 40 тыс. человек осталось жить в городе.</p>
+                
+                <p>50 % жителей города разговаривают только на английском языке. 34 % жителей разговаривают на испанском языке, по 1 % — на вьетнамском и китайском, по 0,2-0,4 % — на французском, урду, арабском, хинди, тагальском и корейском языках. Всего в городе разговаривают более чем на 100 языках.</p>
+                
+                <p>18,44 % жителей исповедуют католицизм, 16,29 % — баптизм, 4,68 % — методизм, 2,86 % — ислам, 0,53 % — иудаизм. Всего исповедуют религию 58,4 % хьюстонцев, 41,6 % — неверующие.</p>
+            </section>
+        </article>
+        
+        <article>
+            <h2 id="media">Средства массовой информации</h2>
+            
+            <figure>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/KUHT_TV_Tower.jpg/300px-KUHT_TV_Tower.jpg" alt="Вещательный центр, откуда вещают радиостанции KUHIT и KUHIF">
+                <figcaption>Вещательный центр, откуда вещают радиостанции KUHIT и KUHIF</figcaption>
+            </figure>
+            
+            <p>В Хьюстоне вещают 19 телеканалов. Наиболее известные телеканалы являются аффилированными каналами крупных телекомпаний: KPRC-TV (NBC), KHOU-TV (CBS), KTRK-TV (ABC), KRIV (Fox), KIAH (The CW) и KTXH (MyNetworkTV). Телеканал KUHIT является членом национальной общественной телевещательной службы PBS.</p>
+            
+            <p>В Хьюстоне вещают 29 радиостанций. Одна из крупнейших радиостанций, KUHIF, принадлежит Хьюстонской университетской системе.</p>
+            
+            <p><strong>Houston Chronicle</strong> — крупнейшая ежедневная газета Хьюстона и штата Техас, которая принадлежит нью-йоркской корпорации Hearst Corporation. В 2014 году ежедневный тираж газеты составлял 356 347 экземпляров, что ставит её на 16 место по тиражу среди всех газет США. До 1995 года существовала Houston Post, но была поглощена Houston Chronicle. На сегодняшний день единственным основным альтернативным городским изданием остаётся еженедельник Houston Press, его еженедельный тираж 2016 году составлял 43 810 экземпляров. В Хьюстоне выпускается газета Houston Business Journal, которая является частью компании American City Business Journals.</p>
+        </article>
+        
+        <article>
+            <h2 id="sister-cities">Города-побратимы</h2>
+            <p>Согласно городскому сайту, у Хьюстона 18 городов-побратимов (в последний раз этот список расширялся в 2015 году, когда к нему присоединилась Басра):</p>
+            
+            <ul>
+                <li>Абу-Даби (ОАЭ)</li>
+                <li>Абердин (Шотландия)</li>
+                <li>Гуаякиль (Эквадор)</li>
+                <li>Карачи (Пакистан)</li>
+                <li>Баку (Азербайджан)</li>
+                <li>Лейпциг (Германия)</li>
+                <li>Ницца (Франция)</li>
+                <li>Луанда (Ангола)</li>
+                <li>Ставангер (Норвегия)</li>
+                <li>Тайбэй (Тайвань)</li>
+                <li>Стамбул (Турция)</li>
+                <li>Перт (Австралия)</li>
+                <li>Тюмень (Россия)</li>
+                <li>Тампико (Мексика)</li>
+                <li>Уэльва (Испания)</li>
+                <li>Тиба (Япония)</li>
+                <li>Шэньчжэнь (Китай)</li>
+                <li>Басра (Ирак)</li>
+            </ul>
+        </article>
+    </main>
+    
     <footer>
-        <div class="container">
-            <div class="social-footer">
-                <a href="https://t.me/vextreme" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-                <a href="https://wa.me/79999999999" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://instagram.com/vextreme" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p>&copy; 2023 Vextreme.ru. Все права защищены.</p>
-            <p>Интернет-магазин профессионального снаряжения для дайвинга и подводной охоты</p>
-        </div>
+        <p><a href="#content">К содержанию</a></p>
     </footer>
-
-    <script>
-        // Данные для каталога
-        const catalogData = {
-            wetsuits: {
-                title: "Гидрокостюмы",
-                subcategories: {
-                    "5mm": "5 мм",
-                    "7mm": "7 мм",
-                    "drysuits": "Сухие костюмы",
-                    "shorties": "Шортики",
-                    "accessories": "Аксессуары"
-                },
-                products: [
-                    {id: 1, name: "Гидрокостюм Henderson 5 мм", price: "19 190 руб.", subcat: "5mm", desc: "Тёплый костюм для умеренных вод"},
-                    {id: 2, name: "Гидрокостюм Scubapro 7 мм", price: "24 500 руб.", subcat: "7mm", desc: "Для холодной воды"},
-                    {id: 3, name: "Сухой костюм Fourth Element", price: "58 900 руб.", subcat: "drysuits", desc: "Полная защита от воды"},
-                    {id: 4, name: "Гидрокостюм-шортики Cressi", price: "8 900 руб.", subcat: "shorties", desc: "Для тёплой воды"},
-                    {id: 5, name: "Гидрокостюм Mares 5 мм Flexa", price: "21 300 руб.", subcat: "5mm", desc: "Высокая эластичность"},
-                    {id: 6, name: "Гидрокостюм Aqualung 7 мм", price: "26 800 руб.", subcat: "7mm", desc: "С капюшоном"},
-                    {id: 7, name: "Сухой костюм Santi", price: "72 000 руб.", subcat: "drysuits", desc: "Технический дайвинг"},
-                    {id: 8, name: "Гидрокостюм-шортики Tusa", price: "7 500 руб.", subcat: "shorties", desc: "Свобода движений"}
-                ]
-            },
-            masks: {
-                title: "Маски и трубки",
-                subcategories: {
-                    "fullface": "Панорамные маски",
-                    "frameless": "Беспереплётные",
-                    "tubes": "Трубки",
-                    "sets": "Наборы"
-                },
-                products: [
-                    {id: 9, name: "Маска Scubapro Synergy", price: "5 960 руб.", subcat: "fullface", desc: "Панорамный обзор"},
-                    {id: 10, name: "Маска Cressi Calibro", price: "4 200 руб.", subcat: "frameless", desc: "Лёгкая и удобная"},
-                    {id: 11, name: "Трубка Mares Ergo", price: "1 800 руб.", subcat: "tubes", desc: "Сухой клапан"},
-                    {id: 12, name: "Набор маска+трубка Aqualung", price: "6 500 руб.", subcat: "sets", desc: "Комплект для начинающих"}
-                ]
-            },
-            fins: {
-                title: "Ласты",
-                subcategories: {
-                    "openheel": "С открытой пяткой",
-                    "fullfoot": "С закрытой пяткой",
-                    "monofins": "Моноласты",
-                    "split": "Разрезные"
-                },
-                products: [
-                    {id: 13, name: "Ласты Scubapro Jet Fin", price: "6 097 руб.", subcat: "openheel", desc: "Классика для технического дайвинга"},
-                    {id: 14, name: "Ласты Mares Avanti Quattro", price: "8 400 руб.", subcat: "fullfoot", desc: "Высокая эффективность"},
-                    {id: 15, name: "Моноласта Leaderfins", price: "12 500 руб.", subcat: "monofins", desc: "Для фридайвинга"},
-                    {id: 16, name: "Ласты Cressi Split", price: "5 300 руб.", subcat: "split", desc: "Лёгкие и удобные"}
-                ]
-            },
-            regulators: {
-                title: "Регуляторы",
-                subcategories: {
-                    "balanced": "Сбалансированные",
-                    "unbalanced": "Несбалансированные",
-                    "octopus": "Октопусы",
-                    "instruments": "Приборы"
-                },
-                products: [
-                    {id: 17, name: "Регулятор Apeks XTX50", price: "32 000 руб.", subcat: "balanced", desc: "Профессиональный регулятор"},
-                    {id: 18, name: "Регулятор Scubapro MK25", price: "28 500 руб.", subcat: "balanced", desc: "Надёжность и комфорт"},
-                    {id: 19, name: "Октопус Aqualung ABS", price: "8 900 руб.", subcat: "octopus", desc: "Запасной регулятор"}
-                ]
-            }
-        };
-
-        // Текущее состояние
-        let currentCategory = "";
-        let currentSubcategory = "all";
-        let cartCount = 0;
-
-        // Показать главный каталог
-        function showMainCatalog() {
-            document.getElementById('mainCatalog').classList.remove('hidden');
-            document.getElementById('categoryPage').classList.add('hidden');
-            document.getElementById('breadcrumbs').innerHTML = `
-                <a href="#" onclick="showMainCatalog(); return false;">Главная</a> / <span>Каталог</span>
-            `;
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        // Открыть категорию
-        function openCategory(categoryId) {
-            const category = catalogData[categoryId];
-            if (!category) {
-                alert("Категория не найдена!");
-                return;
-            }
-            
-            currentCategory = categoryId;
-            currentSubcategory = "all";
-            
-            // Обновляем хлебные крошки
-            document.getElementById('breadcrumbs').innerHTML = `
-                <a href="#" onclick="showMainCatalog(); return false;">Главная</a> / 
-                <a href="#" onclick="showMainCatalog(); return false;">Каталог</a> / 
-                <span>${category.title}</span>
-            `;
-            
-            // Обновляем заголовок
-            document.getElementById('categoryTitle').textContent = category.title;
-            
-            // Создаем фильтры подкатегорий
-            createSubcategoryFilters(category);
-            
-            // Загружаем товары
-            loadCategoryProducts(categoryId);
-            
-            // Показываем страницу категории
-            document.getElementById('mainCatalog').classList.add('hidden');
-            document.getElementById('categoryPage').classList.remove('hidden');
-            
-            // Прокрутка вверх
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        // Открыть подкатегорию
-        function openSubcategory(categoryId, subcategoryId) {
-            openCategory(categoryId);
-            setTimeout(() => {
-                filterProducts(subcategoryId);
-                // Активируем кнопку фильтра
-                const filterBtn = document.querySelector(`.filter-btn[data-filter="${subcategoryId}"]`);
-                if (filterBtn) {
-                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                    filterBtn.classList.add('active');
-                }
-            }, 100);
-        }
-
-        // Создать фильтры подкатегорий
-        function createSubcategoryFilters(category) {
-            const filtersContainer = document.getElementById('subcategoryFilters');
-            let filtersHTML = `<button class="filter-btn active" data-filter="all" onclick="filterProducts('all')">Все товары</button>`;
-            
-            for (const [key, name] of Object.entries(category.subcategories)) {
-                filtersHTML
+</body>
+</html>

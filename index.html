@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vextreme | Каталог подводного снаряжения</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            font-size: 14px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #0d62d9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(26, 115, 232, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: #34a853;
+        }
+        .btn-secondary:hover {
+            background-color: #2e8b47;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #dadce0;
+            color: #5f6368;
+        }
+        .btn-outline:hover {
+            background-color: #f8f9fa;
+            border-color: #1a73e8;
+            color: #1a73e8;
+        }
+
+        /* Секции */
+        section {
+            padding: 60px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            color: #202124;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #1a73e8;
+        }
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #5f6368;
+            font-size: 1rem;
+        }
+
+        /* Шапка */
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #dadce0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 12px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a73e8;
+            display: flex;
+            align-items: center;
+        }
+        .logo i {
+            margin-right: 8px;
+            font-size: 1.8rem;
+        }
+
+        /* Навигация */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 15px;
+            color: #5f6368;
+            padding: 8px 0;
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: #1a73e8;
+        }
+
+        /* Хлебные крошки */
+        .breadcrumbs {
+            padding: 20px 0;
+            font-size: 0.9rem;
+            color: #5f6368;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e8eaed;
+        }
+        .breadcrumbs a {
+            color: #1a73e8;
+        }
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+        .breadcrumbs span {
+            color: #5f6368;
+        }
+
+        /* Сетка категорий */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .category-card {
+            background: #fff;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-align: center;
+            padding-bottom: 20px;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-color: #1a73e8;
+        }
+
+        .category-icon {
+            height: 160px;
+            background: linear-gradient(135deg, #e8f0fe 0%, #f8f9fa 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a73e8;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .subcategories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 15px 15px 0;
+            text-align: left;
+        }
+
+        .subcategory-item {
+            padding: 8px 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #5f6368;
+            transition: all 0.2s;
+            cursor: pointer;
+            text-align: center;
+        }
+        .subcategory-item:hover {
+            background-color: #e8f0fe;
+            color: #1a73e8;
+        }
+
+        /* Сетка товаров */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .product-card {
+            background: #fff;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .product-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        .product-img {
+            height: 180px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a73e8;
+            font-size: 3.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #202124;
+            margin: 10px 0 15px;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #9aa0a6;
+            font-size: 1rem;
+            margin-right: 8px;
+            font-weight: normal;
+        }
+        .product-btn {
+            margin-top: auto;
+            width: 100%;
+        }
+
+        /* Фильтры подкатегорий */
+        .subcategory-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0 30px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #dadce0;
+            border-radius: 20px;
+            color: #5f6368;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #1a73e8;
+            color: white;
+            border-color: #1a73e8;
+        }
+
+        /* Иконки соцсетей */
+        .social-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: 20px;
+        }
+        .social-header a {
+            font-size: 1.3rem;
+            color: #5f6368;
+            transition: color 0.2s;
+        }
+        .social-header a:hover {
+            color: #1a73e8;
+        }
+        .social-header .fa-telegram:hover { color: #0088cc; }
+        .social-header .fa-whatsapp:hover { color: #25D366; }
+        .social-header .fa-instagram:hover { color: #E4405F; }
+
+        /* Корзина */
+        .cart-icon {
+            position: relative;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: #5f6368;
+            margin-left: 20px;
+        }
+        .cart-icon:hover {
+            color: #1a73e8;
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ea4335;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Мобильное меню */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #5f6368;
+        }
+
+        /* Скрытые элементы */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Футер и соцсети */
+        .social-footer {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px 0;
+        }
+        .social-footer a {
+            font-size: 1.8rem;
+            color: #5f6368;
+            transition: color 0.2s;
+        }
+        .social-footer a:hover {
+            color: #1a73e8;
+        }
+        .social-footer .fa-telegram:hover { color: #0088cc; }
+        .social-footer .fa-whatsapp:hover { color: #25D366; }
+        .social-footer .fa-instagram:hover { color: #E4405F; }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #9aa0a6;
+            text-align: center;
+            padding: 25px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero { padding-top: 100px; }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links, .social-header {
+                display: none;
+            }
+            .nav-links.active {
+                display: flex;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 20px;
+                border-top: 1px solid #dadce0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+                z-index: 999;
+            }
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            .subcategories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            section {
+                padding: 40px 0;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            .subcategories {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-water"></i>
+                VEXTREME
+            </a>
+
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#" onclick="showMainCatalog(); return false;">Каталог</a></li>
+                    <li><a href="#delivery">Доставка</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                    <li><a href="#" class="call-btn">Заказать звонок</a></li>
+                </ul>
+            </nav>
+
+            <div class="social-header" id="desktopSocial">
+                <a href="https://t.me/vextreme" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="https://wa.me/79999999999" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/vextreme" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+
+            <div class="cart-icon" id="cartIcon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Хлебные крошки -->
+    <div class="breadcrumbs container" id="breadcrumbs">
+        <a href="#" onclick="showMainCatalog(); return false;">Главная</a> / <span>Каталог</span>
+    </div>
+
+    <!-- Основной каталог (видим по умолчанию) -->
+    <section id="mainCatalog" class="fade-in">
+        <div class="container">
+            <h2>Категории снаряжения</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: #5f6368;">Выберите категорию для просмотра товаров</p>
+            
+            <div class="categories-grid">
+                <!-- Категория 1: Гидрокостюмы -->
+                <div class="category-card" onclick="openCategory('wetsuits')">
+                    <div class="category-icon">
+                        <i class="fas fa-swimming-pool"></i>
+                    </div>
+                    <h3>Гидрокостюмы</h3>
+                    <p>Костюмы для разных температур воды</p>
+                    <div class="subcategories">
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('wetsuits', '5mm')">5 мм</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('wetsuits', '7mm')">7 мм</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('wetsuits', 'drysuits')">Сухие костюмы</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('wetsuits', 'shorties')">Шортики</div>
+                    </div>
+                    <button class="btn" style="margin-top: 15px;">Смотреть все (24 товара)</button>
+                </div>
+                
+                <!-- Категория 2: Маски и трубки -->
+                <div class="category-card" onclick="openCategory('masks')">
+                    <div class="category-icon">
+                        <i class="fas fa-mask"></i>
+                    </div>
+                    <h3>Маски и трубки</h3>
+                    <p>Для комфортного подводного плавания</p>
+                    <div class="subcategories">
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('masks', 'fullface')">Панорамные</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('masks', 'frameless')">Беспереплётные</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('masks', 'tubes')">Трубки</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('masks', 'sets')">Наборы</div>
+                    </div>
+                    <button class="btn" style="margin-top: 15px;">Смотреть все (18 товаров)</button>
+                </div>
+                
+                <!-- Категория 3: Ласты -->
+                <div class="category-card" onclick="openCategory('fins')">
+                    <div class="category-icon">
+                        <i class="fas fa-swimmer"></i>
+                    </div>
+                    <h3>Ласты</h3>
+                    <p>Для эффективного движения под водой</p>
+                    <div class="subcategories">
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('fins', 'openheel')">С открытой пяткой</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('fins', 'fullfoot')">С закрытой пяткой</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('fins', 'monofins')">Моноласты</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('fins', 'split')">Разрезные</div>
+                    </div>
+                    <button class="btn" style="margin-top: 15px;">Смотреть все (16 товаров)</button>
+                </div>
+                
+                <!-- Категория 4: Регуляторы -->
+                <div class="category-card" onclick="openCategory('regulators')">
+                    <div class="category-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3>Регуляторы и октопусы</h3>
+                    <p>Системы подачи воздуха</p>
+                    <div class="subcategories">
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('regulators', 'balanced')">Сбалансированные</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('regulators', 'unbalanced')">Несбалансированные</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('regulators', 'octopus')">Октопусы</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('regulators', 'instruments')">Приборы</div>
+                    </div>
+                    <button class="btn" style="margin-top: 15px;">Смотреть все (22 товара)</button>
+                </div>
+                
+                <!-- Категория 5: Компенсаторы -->
+                <div class="category-card" onclick="openCategory('bc')">
+                    <div class="category-icon">
+                        <i class="fas fa-vest"></i>
+                    </div>
+                    <h3>Компенсаторы плавучести</h3>
+                    <p>BCD и системы плавучести</p>
+                    <div class="subcategories">
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('bc', 'jacket')">Жилеты</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('bc', 'wing')">Крылья</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('bc', 'travel')">Туристические</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('bc', 'tech')">Технические</div>
+                    </div>
+                    <button class="btn" style="margin-top: 15px;">Смотреть все (14 товаров)</button>
+                </div>
+                
+                <!-- Категория 6: Подводная охота -->
+                <div class="category-card" onclick="openCategory('hunting')">
+                    <div class="category-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h3>Подводная охота</h3>
+                    <p>Специализированное снаряжение</p>
+                    <div class="subcategories">
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('hunting', 'guns')">Ружья</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('hunting', 'spearguns')">Гарпуны</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('hunting', 'knives')">Ножи</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('hunting', 'floats')">Поплавки</div>
+                    </div>
+                    <button class="btn" style="margin-top: 15px;">Смотреть все (32 товара)</button>
+                </div>
+                
+                <!-- Категория 7: Аксессуары -->
+                <div class="category-card" onclick="openCategory('accessories')">
+                    <div class="category-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Аксессуары</h3>
+                    <p>Дополнительное оборудование</p>
+                    <div class="subcategories">
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('accessories', 'lights')">Фонари</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('accessories', 'compasses')">Компасы</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('accessories', 'bags')">Сумки</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('accessories', 'tools')">Инструменты</div>
+                    </div>
+                    <button class="btn" style="margin-top: 15px;">Смотреть все (45 товаров)</button>
+                </div>
+                
+                <!-- Категория 8: Компьютеры -->
+                <div class="category-card" onclick="openCategory('computers')">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Дайв-компьютеры</h3>
+                    <p>Электроника для дайвинга</p>
+                    <div class="subcategories">
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('computers', 'wrist')">Наручные</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('computers', 'console')">Консольные</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('computers', 'air')">С передатчиком</div>
+                        <div class="subcategory-item" onclick="event.stopPropagation(); openSubcategory('computers', 'nitrox')">Для найтрокса</div>
+                    </div>
+                    <button class="btn" style="margin-top: 15px;">Смотреть все (12 товаров)</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Страница категории (скрыта по умолчанию) -->
+    <section id="categoryPage" class="hidden">
+        <div class="container fade-in">
+            <h2 id="categoryTitle">Категория</h2>
+            
+            <div class="subcategory-filters" id="subcategoryFilters">
+                <button class="filter-btn active" data-filter="all" onclick="filterProducts('all')">Все товары</button>
+                <!-- Фильтры будут добавлены динамически -->
+            </div>
+            
+            <div id="categoryProducts" class="products-grid">
+                <!-- Товары будут загружены динамически -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn btn-outline" onclick="showMainCatalog()">
+                    <i class="fas fa-arrow-left"></i> Вернуться в каталог
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="social-footer">
+                <a href="https://t.me/vextreme" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="https://wa.me/79999999999" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/vextreme" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2023 Vextreme.ru. Все права защищены.</p>
+            <p>Интернет-магазин профессионального снаряжения для дайвинга и подводной охоты</p>
+        </div>
+    </footer>
+
+    <script>
+        // Данные для каталога
+        const catalogData = {
+            wetsuits: {
+                title: "Гидрокостюмы",
+                subcategories: {
+                    "5mm": "5 мм",
+                    "7mm": "7 мм",
+                    "drysuits": "Сухие костюмы",
+                    "shorties": "Шортики",
+                    "accessories": "Аксессуары"
+                },
+                products: [
+                    {id: 1, name: "Гидрокостюм Henderson 5 мм", price: "19 190 руб.", subcat: "5mm", desc: "Тёплый костюм для умеренных вод"},
+                    {id: 2, name: "Гидрокостюм Scubapro 7 мм", price: "24 500 руб.", subcat: "7mm", desc: "Для холодной воды"},
+                    {id: 3, name: "Сухой костюм Fourth Element", price: "58 900 руб.", subcat: "drysuits", desc: "Полная защита от воды"},
+                    {id: 4, name: "Гидрокостюм-шортики Cressi", price: "8 900 руб.", subcat: "shorties", desc: "Для тёплой воды"},
+                    {id: 5, name: "Гидрокостюм Mares 5 мм Flexa", price: "21 300 руб.", subcat: "5mm", desc: "Высокая эластичность"},
+                    {id: 6, name: "Гидрокостюм Aqualung 7 мм", price: "26 800 руб.", subcat: "7mm", desc: "С капюшоном"},
+                    {id: 7, name: "Сухой костюм Santi", price: "72 000 руб.", subcat: "drysuits", desc: "Технический дайвинг"},
+                    {id: 8, name: "Гидрокостюм-шортики Tusa", price: "7 500 руб.", subcat: "shorties", desc: "Свобода движений"}
+                ]
+            },
+            masks: {
+                title: "Маски и трубки",
+                subcategories: {
+                    "fullface": "Панорамные маски",
+                    "frameless": "Беспереплётные",
+                    "tubes": "Трубки",
+                    "sets": "Наборы"
+                },
+                products: [
+                    {id: 9, name: "Маска Scubapro Synergy", price: "5 960 руб.", subcat: "fullface", desc: "Панорамный обзор"},
+                    {id: 10, name: "Маска Cressi Calibro", price: "4 200 руб.", subcat: "frameless", desc: "Лёгкая и удобная"},
+                    {id: 11, name: "Трубка Mares Ergo", price: "1 800 руб.", subcat: "tubes", desc: "Сухой клапан"},
+                    {id: 12, name: "Набор маска+трубка Aqualung", price: "6 500 руб.", subcat: "sets", desc: "Комплект для начинающих"}
+                ]
+            },
+            fins: {
+                title: "Ласты",
+                subcategories: {
+                    "openheel": "С открытой пяткой",
+                    "fullfoot": "С закрытой пяткой",
+                    "monofins": "Моноласты",
+                    "split": "Разрезные"
+                },
+                products: [
+                    {id: 13, name: "Ласты Scubapro Jet Fin", price: "6 097 руб.", subcat: "openheel", desc: "Классика для технического дайвинга"},
+                    {id: 14, name: "Ласты Mares Avanti Quattro", price: "8 400 руб.", subcat: "fullfoot", desc: "Высокая эффективность"},
+                    {id: 15, name: "Моноласта Leaderfins", price: "12 500 руб.", subcat: "monofins", desc: "Для фридайвинга"},
+                    {id: 16, name: "Ласты Cressi Split", price: "5 300 руб.", subcat: "split", desc: "Лёгкие и удобные"}
+                ]
+            },
+            regulators: {
+                title: "Регуляторы",
+                subcategories: {
+                    "balanced": "Сбалансированные",
+                    "unbalanced": "Несбалансированные",
+                    "octopus": "Октопусы",
+                    "instruments": "Приборы"
+                },
+                products: [
+                    {id: 17, name: "Регулятор Apeks XTX50", price: "32 000 руб.", subcat: "balanced", desc: "Профессиональный регулятор"},
+                    {id: 18, name: "Регулятор Scubapro MK25", price: "28 500 руб.", subcat: "balanced", desc: "Надёжность и комфорт"},
+                    {id: 19, name: "Октопус Aqualung ABS", price: "8 900 руб.", subcat: "octopus", desc: "Запасной регулятор"}
+                ]
+            }
+        };
+
+        // Текущее состояние
+        let currentCategory = "";
+        let currentSubcategory = "all";
+        let cartCount = 0;
+
+        // Показать главный каталог
+        function showMainCatalog() {
+            document.getElementById('mainCatalog').classList.remove('hidden');
+            document.getElementById('categoryPage').classList.add('hidden');
+            document.getElementById('breadcrumbs').innerHTML = `
+                <a href="#" onclick="showMainCatalog(); return false;">Главная</a> / <span>Каталог</span>
+            `;
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Открыть категорию
+        function openCategory(categoryId) {
+            const category = catalogData[categoryId];
+            if (!category) {
+                alert("Категория не найдена!");
+                return;
+            }
+            
+            currentCategory = categoryId;
+            currentSubcategory = "all";
+            
+            // Обновляем хлебные крошки
+            document.getElementById('breadcrumbs').innerHTML = `
+                <a href="#" onclick="showMainCatalog(); return false;">Главная</a> / 
+                <a href="#" onclick="showMainCatalog(); return false;">Каталог</a> / 
+                <span>${category.title}</span>
+            `;
+            
+            // Обновляем заголовок
+            document.getElementById('categoryTitle').textContent = category.title;
+            
+            // Создаем фильтры подкатегорий
+            createSubcategoryFilters(category);
+            
+            // Загружаем товары
+            loadCategoryProducts(categoryId);
+            
+            // Показываем страницу категории
+            document.getElementById('mainCatalog').classList.add('hidden');
+            document.getElementById('categoryPage').classList.remove('hidden');
+            
+            // Прокрутка вверх
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Открыть подкатегорию
+        function openSubcategory(categoryId, subcategoryId) {
+            openCategory(categoryId);
+            setTimeout(() => {
+                filterProducts(subcategoryId);
+                // Активируем кнопку фильтра
+                const filterBtn = document.querySelector(`.filter-btn[data-filter="${subcategoryId}"]`);
+                if (filterBtn) {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    filterBtn.classList.add('active');
+                }
+            }, 100);
+        }
+
+        // Создать фильтры подкатегорий
+        function createSubcategoryFilters(category) {
+            const filtersContainer = document.getElementById('subcategoryFilters');
+            let filtersHTML = `<button class="filter-btn active" data-filter="all" onclick="filterProducts('all')">Все товары</button>`;
+            
+            for (const [key, name] of Object.entries(category.subcategories)) {
+                filtersHTML
